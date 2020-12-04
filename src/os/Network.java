@@ -4,8 +4,9 @@ import java.util.Vector;
 
 public class Network {
     private int ConnectionNo;
-    private int WaitingListLimit;
+    private int TC;
     private Vector<String> Devices_List;
+
     //Getters
     public int getConnectionNo() {
         return ConnectionNo;
@@ -13,12 +14,12 @@ public class Network {
     public void setConnectionNo(int connectionNo) {
         ConnectionNo = connectionNo;
     }
-    public int getWaitingListLimit() {
-        return WaitingListLimit;
+    public int setWishesDevice() {
+        return TC;
     }
     //Setters
-    public void setWaitingListLimit(int waitingListLimit) {
-        WaitingListLimit = waitingListLimit;
+    public void setWishesDevice(int TC) {
+        TC = this.TC;
     }
     public Vector<String> getDevices_List() {
         return Devices_List;

@@ -1,19 +1,56 @@
 package os;
 
-public class Router {
-    private int ConnectionsNo;
-    private Boolean[] ConnectionsArr;
-    private Semaphore semaphore;
+import static java.lang.Thread.sleep;
 
-    Router(int x){
+public class Router {
+    public int ConnectionsNo;
+    public Boolean[] ConnectionsArr;
+    public Semaphore semaphore;
+    public int NumOfConnection;
+
+    Router(int x)
+    {
         ConnectionsNo = x;
         ConnectionsArr = new Boolean[x];
+        for(int i=0;i<x;i++)
+        {
+            ConnectionsArr[i]=false;
+        }
         semaphore = new Semaphore(x);
     }
-    public synchronized int Occupy(Device device){
-        for(int i=0;i<ConnectionsNo;i++){
+    public synchronized int Occupy(Device device) throws InterruptedException
+    {
+        for(int i=0;i<ConnectionsNo;i++)
+        {
             if(ConnectionsArr[i] == false)
+            {
+                NumOfConnection++;
+                device.ConnectorId=i+1; //here i put the value of my connector it like id
+                System.out.println("connection "+ device.ConnectorId+": "+device.getName()+" "+"occupied");
+                ConnectionsArr[i]=true;
+                sleep(1000);
                 break;
+            }
+
         }
+        return device.ConnectorId;
+    }
+    public  String perform(Device device)
+    {
+        String temp = null;
+        try {
+            sleep(1000);
+            temp="performs online activity";
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return temp;
+    }
+    public synchronized String release(Device device)
+    {
+        NumOfConnection--;
+        ConnectionsArr[device.ConnectorId-1]=false;
+        return "Logged Out";
+
     }
 }
