@@ -19,20 +19,24 @@ public class Main {
 
         System.out.println("what is the number of devices Clients want to connect");
         int NumOfDevice=input.nextInt();
-
+        input=new Scanner(System.in);
         int TC=NumOfDevice-connection;
         network.setWishesDevice(TC);
 
         Device[] device=new Device[NumOfDevice];
-        System.out.println("what is device's Name");
-        input=new Scanner(System.in);
+
         for (int i=0;i<NumOfDevice;i++)
         {
+            System.out.println("what is the name of device:"+""+(i+1));
             String name=input.nextLine();
+
+            System.out.println("what is the type of device:"+""+(i+1));
+            String type=input.nextLine();
+
             Devices_List.add(name);
-            device[i]=new Device(name,router);
+            device[i]=new Device(name,type,router);
         }
-        network.setDevices_List(Devices_List);  
+        network.setDevices_List(Devices_List);
         for (int i=0;i<NumOfDevice;i++)
         {
             device[i].start();

@@ -2,12 +2,18 @@ package os;
 
 public class Device extends Thread
 {
+    String DeviceType;
     public int ConnectorId ;
     public Router object;
-    Device(String clientName, Router router)
+    Device(String DeviceName,String type, Router router)
     {
-        super(clientName);
+        super(DeviceName);
+        DeviceType= type;
         object = router;
+    }
+    public String getType()
+    {
+        return DeviceType;
     }
     public void run()
     {
@@ -20,7 +26,11 @@ public class Device extends Thread
 
         System.out.println("connection "+ConnectorId+": "+this.getName()+" "+object.perform(this));
 
-        System.out.println("connection "+ConnectorId+": "+this.getName()+" "+object.release(this));
+        try {
+            System.out.println("connection "+ConnectorId+": "+this.getName()+" "+object.release(this));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         object.semaphore.V();
 
     }

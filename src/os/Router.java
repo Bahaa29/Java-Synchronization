@@ -2,8 +2,9 @@ package os;
 
 import static java.lang.Thread.sleep;
 
-public class Router {
-    public int ConnectionsNo;
+public class Router
+{
+    public int ConnectionsNo; //
     public Boolean[] ConnectionsArr;
     public Semaphore semaphore;
     public int NumOfConnection;
@@ -39,17 +40,17 @@ public class Router {
     {
         String temp = null;
         try {
-            sleep(1000);
             temp="performs online activity";
+            sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         return temp;
     }
-    public synchronized String release(Device device)
-    {
+    public synchronized String release(Device device) throws InterruptedException {
         NumOfConnection--;
         ConnectionsArr[device.ConnectorId-1]=false;
+        sleep(1000);
         return "Logged Out";
 
     }

@@ -14,7 +14,7 @@ public class Semaphore
         if(WIFI_Connection<0)
         {
             try {
-                System.out.println(device.getName() + " arrived and waiting");
+                System.out.println(device.getName()+" <["+device.DeviceType+"]> arrived and waiting");
                 wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -22,7 +22,7 @@ public class Semaphore
         }
         else
         {
-            System.out.println(device.getName() + " arrived");
+            System.out.println(device.getName()+" <["+device.DeviceType+"]> arrived");
         }
     }
     public synchronized void V() {
