@@ -1,0 +1,28 @@
+what is the number of wifi connections
+2
+what is the number of devices Clients want to connect
+3
+what is the name of device:
+c1
+what is the type of device:
+pc
+what is the name of device:
+c2
+what is the type of device:
+tab
+what is the name of device:
+c3
+what is the type of device:
+mob
+c1 <[pc]> arrived
+c2 <[tab]> arrived
+c3 <[mob]> arrived and waiting
+connection 1: c1 occupied
+connection 2: c2 occupied
+connection 1: c1 performs online activity
+connection 2: c2 performs online activity
+connection 1: c1 Logged Out
+connection 2: c2 Logged Out
+connection 1: c3 occupied
+connection 1: c3 performs online activity
+connection 1: c3 Logged Out

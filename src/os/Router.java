@@ -1,5 +1,7 @@
 package os;
 
+import java.io.IOException;
+
 import static java.lang.Thread.sleep;
 
 public class Router
@@ -8,6 +10,9 @@ public class Router
     public Boolean[] ConnectionsArr;
     public Semaphore semaphore;
     public int NumOfConnection;
+    String line2;
+
+    public Main object1;
 
     Router(int x)
     {
@@ -19,7 +24,7 @@ public class Router
         }
         semaphore = new Semaphore(x);
     }
-    public synchronized int Occupy(Device device) throws InterruptedException
+    public synchronized int Occupy(Device device) throws InterruptedException, IOException
     {
         for(int i=0;i<ConnectionsNo;i++)
         {
@@ -28,6 +33,8 @@ public class Router
                 NumOfConnection++;
                 device.ConnectorId=i+1; //here i put the value of my connector it like id
                 System.out.println("connection "+ device.ConnectorId+": "+device.getName()+" "+"occupied");
+                line2="connection "+ device.ConnectorId+": "+device.getName()+" "+"occupied";
+                object1.write_file(line2);
                 ConnectionsArr[i]=true;
                 sleep(1000);
                 break;
@@ -47,7 +54,7 @@ public class Router
         }
         return temp;
     }
-    public synchronized String release(Device device) throws InterruptedException {
+    public synchronized String release(Device device) throws InterruptedException, IOException {
         NumOfConnection--;
         ConnectionsArr[device.ConnectorId-1]=false;
         sleep(1000);
